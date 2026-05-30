@@ -57,8 +57,8 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} «Энергосети». Все права защищены.</p>
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"> 
+          <p>© {new Date().getFullYear()} «Энергосети». Все права защищены. Сделано студентом 4 курса Стаценко И.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-white">Политика конфиденциальности</a>
             <a href="#" className="hover:text-white">Карта сайта</a>
