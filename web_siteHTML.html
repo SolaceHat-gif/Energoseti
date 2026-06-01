@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Энергосети | Электроснабжение и питание</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f8fafc;
+            color: #0b2b3b;
+            line-height: 1.4;
+        }
+
+        .site-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .top-bar {
+            background-color: #0a2e3f;
+            color: white;
+            padding: 12px 24px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .logo-area span {
+            font-weight: 300;
+            font-size: 14px;
+            color: #9fc8e3;
+        }
+
+        .cab-link {
+            background-color: #2c6e9e;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .cab-link:hover {
+            background-color: #1f557c;
+        }
+
+        .nav-main {
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 0 24px;
+            border-bottom: 1px solid #e2edf2;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            list-style: none;
+            padding: 14px 0;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            font-weight: 500;
+            color: #1f4e6e;
+            transition: 0.2s;
+            font-size: 16px;
+        }
+
+        .nav-links li:hover {
+            color: #c9452c;
+        }
+
+        .active-nav {
+            color: #c9452c;
+            border-bottom: 2px solid #c9452c;
+            padding-bottom: 4px;
+        }
+
+        .page {
+            display: none;
+            padding: 32px 24px 48px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        .btn-primary {
+            background-color: #e0722c;
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #c45d1c;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid #e0722c;
+            color: #e0722c;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(105deg, #eef5f9 0%, #ffffff 100%);
+            border-radius: 32px;
+            padding: 48px 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+        }
+
+        .hero-badge {
+            font-size: 14px;
+            font-weight: 700;
+            color: #c9452c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #0a2e3f;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: 0.2s;
+            border: 1px solid #e5f0f5;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #0a2e3f;
+        }
+
+        .service-card p {
+            color: #3e6a7c;
+            margin-bottom: 16px;
+        }
+
+        .service-link {
+            color: #e0722c;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .branches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 36px;
+            background: #f0f6fa;
+            border-radius: 28px;
+            padding: 28px;
+        }
+
+        .branch {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 28px;
+            border-left: 5px solid #e0722c;
+        }
+
+        .news-date {
+            color: #6b8b9b;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .news-desc {
+            color: #2c5a6e;
+            margin-bottom: 12px;
+        }
+
+        .read-more {
+            color: #e0722c;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .cab-tabs {
+            display: flex;
+            gap: 24px;
+            border-bottom: 2px solid #dce9f0;
+            margin-bottom: 32px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding: 10px 0;
+            cursor: pointer;
+            color: #5d7f8f;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active-tab {
+            color: #e0722c;
+            border-bottom: 3px solid #e0722c;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 600px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f4e6e;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 60px;
+            border: 1px solid #cbdde6;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #e0722c;
+            box-shadow: 0 0 0 2px rgba(224,114,44,0.1);
+        }
+
+        .error-msg {
+            font-size: 13px;
+            color: #d1452b;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .success-msg {
+            background: #e0f2e9;
+            color: #1e6f3f;
+            padding: 12px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+        }
+
+        .switch-form-text {
+            margin-top: 24px;
+            text-align: center;
+            color: #2c6e9e;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: #0a2e3f;
+            color: #cbdbe0;
+            padding: 36px 24px 24px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 32px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p, .footer-col li {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2a5e78;
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .nav-links {
+                gap: 16px;
+                font-size: 14px;
+            }
+            .page {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="site-wrapper">
+    <div class="top-bar">
+        <div class="logo-area">ЭНЕРГОСЕТИ <span>электроснабжение и питание</span></div>
+        <button class="cab-link" id="cabinetTopBtn">Личный кабинет</button>
+    </div>
+    <div class="nav-main">
+        <ul class="nav-links">
+            <li data-page="home">О компании</li>
+            <li data-page="services">Потребителям</li>
+            <li data-page="investors">Акционерам и инвесторам</li>
+            <li data-page="press">Пресс-центр</li>
+            <li data-page="procurement">Закупки</li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Главная страница (О компании) -->
+        <div id="homePage" class="page active-page">
+            <div class="hero">
+                <div class="hero-badge">ВАЖНО</div>
+                <h1>«Энергосети» — проведение электричества и питания</h1>
+                <p style="font-size: 1.2rem; color: #1d5a77;">Мы занимаемся проведением электричества и обеспечением бесперебойного питания для домов, предприятий и городов.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="techConnectBtn">Технологическое присоединение</button>
+                    <button class="btn-outline" id="outageBtn">Сообщить об отключении</button>
+                </div>
+            </div>
+            <div style="margin-top: 20px; background: #eef2f5; border-radius: 24px; padding: 24px;">
+                <h3>Надёжность и развитие</h3>
+                <p>Компания «Энергосети» обеспечивает стабильную работу электросетевого комплекса. Современные решения и забота о потребителях — наш приоритет.</p>
+            </div>
+        </div>
+
+        <!-- Страница услуг (Потребителям) -->
+        <div id="servicesPage" class="page">
+            <h2 style="font-size: 2rem; margin-bottom: 12px;">Услуги и сервисы</h2>
+            <div class="services-grid">
+                <div class="service-card"><h3>Технологическое присоединение</h3><p>Подать заявку на подключение к сетям</p><span class="service-link">Подать заявку →</span></div>
+                <div class="service-card"><h3>Оплата услуг</h3><p>Узнать задолженность и оплатить счета</p><span class="service-link">Перейти к оплате →</span></div>
+                <div class="service-card"><h3>Плановые отключения</h3><p>График ремонтных работ и отключений</p><span class="service-link">Подробнее →</span></div>
+                <div class="service-card"><h3>Передача показаний</h3><p>Внести показания приборов учета</p><span class="service-link">Передать показания →</span></div>
+                <div class="service-card"><h3>Центры обслуживания</h3><p>Найти ближайший офис для потребителей</p><span class="service-link">Найти офис →</span></div>
+                <div class="service-card"><h3>Услуги и тарифы</h3><p>Информация о стоимости электроэнергии</p><span class="service-link">Тарифы →</span></div>
+            </div>
+            <h2 style="margin: 40px 0 16px 0;">Наши филиалы</h2>
+            <div class="branches">
+                <div class="branch"><strong>Северный филиал «Энергосети»</strong><br>Обеспечивает проведение электричества и питания для северных районов и промышленных объектов региона.</div>
+                <div class="branch"><strong>Южный филиал «Энергосети»</strong><br>Отвечает за электроснабжение жилых кварталов и предприятий южной части зоны обслуживания.</div>
+            </div>
+        </div>
+
+        <!-- Акционерам -->
+        <div id="investorsPage" class="page">
+            <h2>Акционерам и инвесторам</h2>
+            <div style="background: white; border-radius: 28px; padding: 32px; margin-top: 20px;">
+                <p>Раскрытие информации, годовые отчеты, корпоративное управление. Актуальные данные доступны в разделе «Раскрытие информации».</p>
+                <p style="margin-top: 16px;">• Дивидендная политика<br>• Финансовые результаты<br>• Контакты для инвесторов</p>
+            </div>
+        </div>
+
+        <!-- Пресс-центр -->
+        <div id="pressPage" class="page">
+            <h2>Пресс-центр</h2>
+            <div class="news-list" style="margin-top: 28px;">
+                <div class="news-item"><div class="news-date">31 мая 2026</div><div class="news-title">Энергетики «Энергосети» подготовили сети к осенне-зимнему периоду</div><div class="news-desc">Реализована масштабная ремонтная программа, включающая замену опор и провода на ключевых линиях электропередачи.</div><span class="read-more">Подробнее →</span></div>
+                <div class="news-item"><div class="news-date">28 мая 2026</div><div class="news-title">Открыт новый Центр обслуживания потребителей</div><div class="news-desc">Современный офис работает по принципу «одного окна» и предоставляет полный спектр услуг для физических и юридических лиц.</div><span class="read-more">Подробнее →</span></div>
+                <div class="news-item"><div class="news-date">26 мая 2026</div><div class="news-title">Внедрение интеллектуальных систем учета электроэнергии</div><div class="news-desc">До конца года планируется установить более 50 тысяч “умных” счетчиков, что повысит прозрачность расчетов.</div><span class="read-more">Подробнее →</span></div>
+                <div class="news-item"><div class="news-date">23 мая 2026</div><div class="news-title">Специалисты пресекли незаконное потребление электроэнергии</div><div class="news-desc">В ходе рейдов выявлено несколько крупных майнинг-ферм, незаконно подключенных к сетям компании.</div><span class="read-more">Подробнее →</span></div>
+            </div>
+        </div>
+
+        <!-- Закупки -->
+        <div id="procurementPage" class="page">
+            <h2>Закупки</h2>
+            <div style="background: white; border-radius: 28px; padding: 32px;"><p>Информация о тендерах, закупочных процедурах и работе с поставщиками.</p><p>Актуальные запросы предложений публикуются в ЕИС и на портале поставщиков.</p></div>
+        </div>
+
+        <!-- Личный кабинет (регистрация / вход) -->
+        <div id="cabinetPage" class="page">
+            <h2 style="margin-bottom: 20px;">Личный кабинет</h2>
+            <div class="form-card">
+                <div class="cab-tabs">
+                    <button class="tab-btn active-tab" data-tab="reg">Регистрация</button>
+                    <button class="tab-btn" data-tab="login">Вход</button>
+                </div>
+                <!-- Форма регистрации -->
+                <div id="regFormContainer">
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" id="regName" placeholder="Иван Иванов" value="">
+                            <div class="error-msg" id="nameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Электронная почта</label>
+                            <input type="email" id="regEmail" placeholder="example@mail.ru" value="">
+                            <div class="error-msg" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="regPass" placeholder="......">
+                            <div class="error-msg" id="passError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Подтверждение пароля</label>
+                            <input type="password" id="regConfirmPass" placeholder="......">
+                            <div class="error-msg" id="confirmError"></div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%">Зарегистрироваться</button>
+                        <div class="switch-form-text" id="switchToLogin">Уже есть аккаунт? <strong>Войти</strong></div>
+                    </form>
+                </div>
+                <!-- Форма входа (скрыта по умолчанию) -->
+                <div id="loginFormContainer" style="display: none;">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label>Электронная почта</label>
+                            <input type="email" id="loginEmail" placeholder="example@mail.ru">
+                            <div class="error-msg" id="loginEmailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="loginPass" placeholder="......">
+                            <div class="error-msg" id="loginPassError"></div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%">Войти</button>
+                        <div class="switch-form-text" id="switchToReg">Нет аккаунта? <strong>Зарегистрироваться</strong></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ЭНЕРГОСЕТИ</h4>
+                <p>Электроснабжение и питание</p>
+                <p>Компания «Энергосети» занимается проведением электричества и обеспечением надежного питания.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Компания</h4>
+                <p>Общая информация</p><p>Руководство</p><p>Раскрытие информации</p><p>Вакансии</p>
+            </div>
+            <div class="footer-col">
+                <h4>Потребителям</h4>
+                <p>Технологическое присоединение</p><p>Передача показаний</p><p>Оплата электроэнергии</p><p>График отключений</p><p>Личный кабинет</p>
+            </div>
+            <div class="footer-col">
+                <h4>Филиалы</h4>
+                <p>Северный филиал «Энергосети»</p><p>Южный филиал «Энергосети»</p>
+            </div>
+        </div>
+        <div class="footer-copyright">© 2026 «Энергосети». Все права защищены. Сделано студентом 4 курса Стаценко И.</div>
+    </footer>
+</div>
+
+<script>
+    // ----- НАВИГАЦИЯ -----
+    const pages = ['home', 'services', 'investors', 'press', 'procurement', 'cabinet'];
+    const pageElements = {
+        home: document.getElementById('homePage'),
+        services: document.getElementById('servicesPage'),
+        investors: document.getElementById('investorsPage'),
+        press: document.getElementById('pressPage'),
+        procurement: document.getElementById('procurementPage'),
+        cabinet: document.getElementById('cabinetPage')
+    };
+
+    function showPage(pageId) {
+        for (let p of pages) {
+            pageElements[p].classList.remove('active-page');
+        }
+        pageElements[pageId].classList.add('active-page');
+        document.querySelectorAll('.nav-links li').forEach(li => {
+            li.classList.remove('active-nav');
+        });
+        if (pageId !== 'cabinet') {
+            const activeNav = document.querySelector(`.nav-links li[data-page="${pageId}"]`);
+            if (activeNav) activeNav.classList.add('active-nav');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.nav-links li').forEach(li => {
+        li.addEventListener('click', () => {
+            const page = li.dataset.page;
+            if (page === 'home') showPage('home');
+            else if (page === 'services') showPage('services');
+            else if (page === 'investors') showPage('investors');
+            else if (page === 'press') showPage('press');
+            else if (page === 'procurement') showPage('procurement');
+            else showPage('home');
+        });
+    });
+
+    document.getElementById('cabinetTopBtn').addEventListener('click', () => {
+        showPage('cabinet');
+    });
+
+    document.getElementById('techConnectBtn')?.addEventListener('click', () => showPage('services'));
+    document.getElementById('outageBtn')?.addEventListener('click', () => alert('Сообщить об отключении: круглосуточная горячая линия 8-800-555-35-35'));
+
+    // ----- ЛИЧНЫЙ КАБИНЕТ: ТАБЫ И ВАЛИДАЦИЯ (ошибки без эмодзи) -----
+    const regContainer = document.getElementById('regFormContainer');
+    const loginContainer = document.getElementById('loginFormContainer');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    function setActiveTab(tabId) {
+        if (tabId === 'reg') {
+            regContainer.style.display = 'block';
+            loginContainer.style.display = 'none';
+            tabBtns[0].classList.add('active-tab');
+            tabBtns[1].classList.remove('active-tab');
+        } else {
+            regContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+            tabBtns[0].classList.remove('active-tab');
+            tabBtns[1].classList.add('active-tab');
+        }
+    }
+
+    tabBtns[0].addEventListener('click', () => setActiveTab('reg'));
+    tabBtns[1].addEventListener('click', () => setActiveTab('login'));
+
+    document.getElementById('switchToLogin')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveTab('login');
+    });
+    document.getElementById('switchToReg')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveTab('reg');
+    });
+
+    function clearRegErrors() {
+        document.getElementById('nameError').innerHTML = '';
+        document.getElementById('emailError').innerHTML = '';
+        document.getElementById('passError').innerHTML = '';
+        document.getElementById('confirmError').innerHTML = '';
+    }
+
+    function validateEmailDetailed(email) {
+        if (!email || email.trim() === '') return { valid: false, msg: 'Введите адрес электронной почты' };
+        if (!email.includes('@')) {
+            return { valid: false, msg: `Адрес электронной почты должен содержать символ «@». Похоже, вы его пропустили: ${email}` };
+        }
+        const parts = email.split('@');
+        if (parts.length !== 2 || parts[1].indexOf('.') === -1 || parts[0].length === 0) {
+            return { valid: false, msg: 'Введите корректный адрес электронной почты.' };
+        }
+        return { valid: true, msg: '' };
+    }
+
+    // регистрация
+    const regForm = document.getElementById('registrationForm');
+    regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearRegErrors();
+
+        const name = document.getElementById('regName').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const pass = document.getElementById('regPass').value;
+        const confirmPass = document.getElementById('regConfirmPass').value;
+
+        let isValid = true;
+
+        if (name === '') {
+            document.getElementById('nameError').innerHTML = 'Введите имя';
+            isValid = false;
+        }
+
+        const emailCheck = validateEmailDetailed(email);
+        if (!emailCheck.valid) {
+            document.getElementById('emailError').innerHTML = emailCheck.msg;
+            isValid = false;
+        }
+
+        if (pass.length < 4) {
+            document.getElementById('passError').innerHTML = 'Пароль должен содержать не менее 4 символов';
+            isValid = false;
+        }
+        if (pass !== confirmPass) {
+            document.getElementById('confirmError').innerHTML = 'Пароли не совпадают';
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert(`Добро пожаловать, ${name}! Регистрация выполнена успешно.`);
+            regForm.reset();
+            clearRegErrors();
+        }
+    });
+
+    // форма входа
+    const loginFormElem = document.getElementById('loginForm');
+    loginFormElem.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const loginEmail = document.getElementById('loginEmail').value.trim();
+        const loginPass = document.getElementById('loginPass').value;
+        document.getElementById('loginEmailError').innerHTML = '';
+        document.getElementById('loginPassError').innerHTML = '';
+
+        if (!loginEmail) {
+            document.getElementById('loginEmailError').innerHTML = 'Введите электронную почту';
+        } else if (!loginEmail.includes('@')) {
+            document.getElementById('loginEmailError').innerHTML = `Адрес должен содержать символ «@»: ${loginEmail}`;
+        } else if (!loginPass) {
+            document.getElementById('loginPassError').innerHTML = 'Введите пароль';
+        } else {
+            alert(`Вход выполнен (демо). Добро пожаловать, ${loginEmail}`);
+            loginFormElem.reset();
+        }
+    });
+
+    // клики по ссылкам-заглушкам
+    document.querySelectorAll('.service-link').forEach(link => {
+        link.addEventListener('click', () => {
+            alert('Функционал в разработке. Для демонстрации интерфейса спасибо за понимание.');
+        });
+    });
+    document.querySelectorAll('.read-more').forEach(el => {
+        el.addEventListener('click', () => alert('Полный текст новости доступен по запросу в пресс-службе.'));
+    });
+
+    // очистка ошибок при фокусе
+    document.getElementById('regName')?.addEventListener('focus', () => document.getElementById('nameError').innerHTML = '');
+    document.getElementById('regEmail')?.addEventListener('focus', () => document.getElementById('emailError').innerHTML = '');
+    document.getElementById('regPass')?.addEventListener('focus', () => document.getElementById('passError').innerHTML = '');
+    document.getElementById('regConfirmPass')?.addEventListener('focus', () => document.getElementById('confirmError').innerHTML = '');
+    document.getElementById('loginEmail')?.addEventListener('focus', () => document.getElementById('loginEmailError').innerHTML = '');
+    document.getElementById('loginPass')?.addEventListener('focus', () => document.getElementById('loginPassError').innerHTML = '');
+
+    // Стартовая страница
+    showPage('home');
+</script>
+</body>
+</html>
