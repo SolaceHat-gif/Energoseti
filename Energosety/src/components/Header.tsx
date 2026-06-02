@@ -8,13 +8,12 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenAuth }) => {
   return (
     <header className="w-full bg-white shadow-md relative z-50">
-      {/* Top bar */}
+      {/* вверх*/}
       <div className="bg-[#004b87] text-white py-1">
         <div className="container mx-auto px-4 flex justify-between items-center text-xs md:text-sm">
           <div className="flex items-center space-x-4">
             <span className="flex items-center hover:text-gray-200 cursor-pointer">
               <Eye className="w-4 h-4 mr-1" />
-              Версия для слабовидящих
             </span>
           </div>
           <div className="flex items-center space-x-6">
@@ -30,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAuth }) => {
         </div>
       </div>
 
-      {/* Main header */}
+      {/* основная чатсь */}
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-[#004b87] rounded flex items-center justify-center">
